@@ -20,7 +20,7 @@ export default class DateControl extends React.Component {
     includeTime: PropTypes.bool,
   };
 
-  format = this.props.field.get('format');
+  format = this.props.field.get('format') || (this.props.includeTime ? DEFAULT_DATETIME_FORMAT : DEFAULT_DATE_FORMAT);
 
   componentDidMount() {
     const { value } = this.props;
@@ -41,34 +41,22 @@ export default class DateControl extends React.Component {
   handleChange = datetime => {
     const { onChange } = this.props;
 
-    /**
-     * Set the date only if it is valid.
-     */
-    if (!this.isValidDate(datetime)) {
-      return;
-    }
-
-    /**
-     * Produce a formatted string only if a format is set in the config.
-     * Otherwise produce a date object.
-     */
-    if (this.format) {
+    // Set the date only if the format is valid
+    if (this.isValidDate(datetime)) {
       const formattedValue = moment(datetime).format(this.format);
       onChange(formattedValue);
-    } else {
-      const value = moment.isMoment(datetime) ? datetime.toDate() : datetime;
-      onChange(value);
     }
   };
 
   onBlur = datetime => {
-    const { setInactiveStyle } = this.props;
+    const { setInactiveStyle, onChange } = this.props;
 
     if (!this.isValidDate(datetime)) {
       const parsedDate = moment(datetime);
 
       if (parsedDate.isValid()) {
-        this.handleChange(datetime);
+        const formattedValue = parsedDate.format(this.format);
+        onChange(formattedValue);
       } else {
         window.alert('The date you entered is invalid.');
       }
@@ -79,10 +67,11 @@ export default class DateControl extends React.Component {
 
   render() {
     const { includeTime, value, classNameWrapper, setActiveStyle, setInactiveStyle } = this.props;
+    const format = this.format;
     return (
       <DateTime
         timeFormat={!!includeTime}
-        value={moment(value, this.format)}
+        value={moment(value, format)}
         onChange={this.handleChange}
         onFocus={setActiveStyle}
         onBlur={this.onBlur}
