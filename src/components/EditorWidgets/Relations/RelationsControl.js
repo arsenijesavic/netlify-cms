@@ -43,9 +43,11 @@ class RelationsControl extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+
     if (this.didInitialSearch) return;
     if (nextProps.queryHits !== this.props.queryHits && nextProps.queryHits.get && nextProps.queryHits.get(this.controlID)) {
       this.didInitialSearch = true;
+      console.log('why')
       const suggestion = nextProps.queryHits.get(this.controlID);
       if (suggestion && suggestion.length === 1) {
         const val = this.getSuggestionValue(suggestion[0]);
@@ -115,6 +117,7 @@ class RelationsControl extends Component {
   renderSuggestion = (suggestion) => {
     const { field } = this.props;
     const valueField = field.get('valueField');
+    console.log(suggestion)
     return <span>{suggestion.data[valueField]}</span>;
   };
 
