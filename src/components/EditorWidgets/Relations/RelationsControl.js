@@ -55,8 +55,8 @@ class RelationsControl extends Component {
   }
 
   onChange = (relations) => {
-    console.log('RELATIONS:',relations,typeof relations)
-    this.props.onChange(relations && relations.map(val => val));
+    console.log('RELATIONS:', relations, typeof relations)
+    this.props.onChange(relations.map(val => val));
   };
 
   onSuggestionsFetchRequested = debounce(({ value }) => {
@@ -92,7 +92,7 @@ class RelationsControl extends Component {
     };
 
     const suggestions = (this.props.queryHits.get) ? this.props.queryHits.get(this.controlID, []) : [];
-
+    console.log('RENDER')
     return (
       <div className="nc-relations-container">
         <Autosuggest

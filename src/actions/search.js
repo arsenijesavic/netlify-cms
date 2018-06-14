@@ -133,7 +133,7 @@ export function query(namespace, collection, searchFields, searchTerm) {
       localQuery(namespace, collection, searchFields, searchTerm, state, dispatch);
     } else {
       const provider = getIntegrationProvider(state.integrations, currentBackend(state.config).getToken, integration);
-      provider.searchBy(searchFields.map(f => `data.${ f }`), collection, searchTerm).then(
+      provider.searchBy(searchFields.map(f => `data.${f}`), collection, searchTerm).then(
         response => dispatch(querySuccess(namespace, collection, searchFields, searchTerm, response)),
         error => dispatch(queryFailure(namespace, collection, searchFields, searchTerm, error))
       );
@@ -157,14 +157,15 @@ function localSearch(searchTerm, getState, dispatch) {
         const filteredEntries = fuzzy.filter(searchTerm, collectionEntries, {
           extract: entry => searchFields.reduce((acc, field) => {
             const f = entry.data[field];
-            return f ? `${ acc } ${ f }` : acc;
+            return f ? `${acc} ${f}` : acc;
           }, ""),
         }).filter(entry => entry.score > 5);
         localResults[collectionKey] = true;
         localResults.entries = localResults.entries.concat(filteredEntries);
-        
+
         const returnedKeys = Object.keys(localResults);
         const allCollections = state.collections.keySeq().toArray();
+        console.log('HERE:')
         if (allCollections.every(v => returnedKeys.indexOf(v) !== -1)) {
           const sortedResults = localResults.entries.sort((a, b) => {
             if (a.score > b.score) return -1;
@@ -173,8 +174,8 @@ function localSearch(searchTerm, getState, dispatch) {
           }).map(f => f.original);
           if (allCollections.size > 3 || localResults.entries.length > 30) {
             console.warn('The Netlify CMS is currently using a Built-in search.' +
-            '\nWhile this works great for small sites, bigger projects might benefit from a separate search integration.' + 
-            '\nPlease refer to the documentation for more information');
+              '\nWhile this works great for small sites, bigger projects might benefit from a separate search integration.' +
+              '\nPlease refer to the documentation for more information');
           }
           dispatch(searchSuccess(searchTerm, sortedResults, 0));
         }
@@ -201,7 +202,7 @@ function localQuery(namespace, collection, searchFields, searchTerm, state, disp
     const filteredEntries = fuzzy.filter(searchTerm, entries, {
       extract: entry => searchFields.reduce((acc, field) => {
         const f = entry.data[field];
-        return f ? `${ acc } ${ f }` : acc;
+        return f ? `${acc} ${f}` : acc;
       }, ""),
     }).filter(entry => entry.score > 5);
 
