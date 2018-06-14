@@ -56,7 +56,8 @@ class RelationsControl extends Component {
 
   onChange = (relations) => {
     console.log(relations)
-    this.props.onChange(relations.map(val => val));
+    console.log(typeof relations)
+    this.props.onChange(relations && relations.map(val => val));
   };
 
   onSuggestionsFetchRequested = debounce(({ value }) => {
