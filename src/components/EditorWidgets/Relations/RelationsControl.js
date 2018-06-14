@@ -55,8 +55,7 @@ class RelationsControl extends Component {
   }
 
   onChange = (relations) => {
-    console.log(relations)
-    console.log(typeof relations)
+    console.log('RELATIONS:',relations,typeof relations)
     this.props.onChange(relations && relations.map(val => val));
   };
 

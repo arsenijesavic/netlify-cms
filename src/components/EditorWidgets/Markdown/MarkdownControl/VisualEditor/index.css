@@ -8,7 +8,7 @@
   z-index: 1;
   position: sticky;
   top: 0;
-  margin-bottom: var(--stickyDistanceBottom);
+  /* margin-bottom: var(--stickyDistanceBottom); */
 }
 
 .nc-visualEditor-wrapper {
