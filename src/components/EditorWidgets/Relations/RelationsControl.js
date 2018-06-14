@@ -43,11 +43,9 @@ class RelationsControl extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-
     if (this.didInitialSearch) return;
     if (nextProps.queryHits !== this.props.queryHits && nextProps.queryHits.get && nextProps.queryHits.get(this.controlID)) {
       this.didInitialSearch = true;
-      console.log('why')
       const suggestion = nextProps.queryHits.get(this.controlID);
       if (suggestion && suggestion.length === 1) {
         const val = this.getSuggestionValue(suggestion[0]);
@@ -57,6 +55,7 @@ class RelationsControl extends Component {
   }
 
   onChange = (relations) => {
+    console.log(relations)
     this.props.onChange(relations.map(val => val));
   };
 
