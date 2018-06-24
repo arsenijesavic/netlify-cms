@@ -1,6 +1,6 @@
 {
   "name": "netlify-cms",
-  "version": "1.9.0",
+  "version": "2.0.0-dev",
   "description": "Netlify CMS lets content editors work on structured content stored in git",
   "main": "dist/cms.js",
   "scripts": {
@@ -153,7 +153,6 @@
     "react-frame-component": "^2.0.0",
     "react-hot-loader": "^4.0.0",
     "react-immutable-proptypes": "^2.1.0",
-    "react-input-autosize": "^2.2.1",
     "react-is": "16.3.1",
     "react-modal": "^3.1.5",
     "react-redux": "^4.4.0",
@@ -162,7 +161,6 @@
     "react-scroll-sync": "^0.4.0",
     "react-sortable-hoc": "^0.6.8",
     "react-split-pane": "^0.1.66",
-    "react-tagsinput": "^3.19.0",
     "react-textarea-autosize": "^5.2.0",
     "react-toggled": "^1.1.2",
     "react-topbar-progress-indicator": "^2.0.0",
