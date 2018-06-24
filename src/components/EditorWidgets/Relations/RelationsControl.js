@@ -63,7 +63,6 @@ class RelationsControl extends Component {
     const { field } = this.props;
     const collection = field.get('collection');
     const searchFields = field.get('searchFields').toJS();
-    console.log((this.controlID, collection, searchFields, value))
     this.props.query(this.controlID, collection, searchFields, value);
   }, 500);
 
@@ -97,7 +96,7 @@ class RelationsControl extends Component {
     return (
       <div className="nc-relations-container">
         <Autosuggest
-          suggestions={suggestions}
+          suggestions={suggestions.length > 0 ? suggestions : []}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
           onSuggestionsClearRequested={this.onSuggestionsClearRequested}
           onSuggestionSelected={(e, { suggestion }) => {
@@ -135,7 +134,7 @@ class RelationsControl extends Component {
     const inputProps = {
       placeholder: this.props.field.get("placeholder", 'Add a Relation'),
     };
-
+    console.log(value)
     return (
       <TagsInput
         id={forID}
