@@ -1,14 +1,14 @@
 import React from 'react';
 
 /* eslint-disable */
-export const IDENTIFIER_FIELDS = ['title', 'path'];
+export const IDENTIFIER_FIELDS = ['title', 'path', 'name'];
 
 export const INFERABLE_FIELDS = {
   title: {
     type: 'string',
     secondaryTypes: [],
     synonyms: ['title', 'name', 'label', 'headline', 'header'],
-    defaultPreview: value => <h1>{ value }</h1>,
+    defaultPreview: value => <h1>{value}</h1>,
     fallbackToFirstField: true,
     showError: true,
   },
@@ -16,7 +16,7 @@ export const INFERABLE_FIELDS = {
     type: 'string',
     secondaryTypes: [],
     synonyms: ['short_title', 'shortTitle', 'short'],
-    defaultPreview: value => <h2>{ value }</h2>,
+    defaultPreview: value => <h2>{value}</h2>,
     fallbackToFirstField: false,
     showError: false,
   },
@@ -24,7 +24,7 @@ export const INFERABLE_FIELDS = {
     type: 'string',
     secondaryTypes: [],
     synonyms: ['author', 'name', 'by', 'byline', 'owner'],
-    defaultPreview: value => <strong>{ value }</strong>,
+    defaultPreview: value => <strong>{value}</strong>,
     fallbackToFirstField: false,
     showError: false,
   },
