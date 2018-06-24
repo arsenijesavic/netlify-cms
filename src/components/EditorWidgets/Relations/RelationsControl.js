@@ -55,7 +55,6 @@ class RelationsControl extends Component {
   }
 
   onChange = (relations) => {
-    console.log('RELATIONS:', relations, typeof relations)
     this.props.onChange(relations.map(val => val));
   };
 
@@ -64,6 +63,7 @@ class RelationsControl extends Component {
     const { field } = this.props;
     const collection = field.get('collection');
     const searchFields = field.get('searchFields').toJS();
+    console.log((this.controlID, collection, searchFields, value))
     this.props.query(this.controlID, collection, searchFields, value);
   }, 500);
 
@@ -92,7 +92,7 @@ class RelationsControl extends Component {
     };
 
     const suggestions = (this.props.queryHits.get) ? this.props.queryHits.get(this.controlID, []) : [];
-    console.log('RENDER')
+    console.log(this.props)
     return (
       <div className="nc-relations-container">
         <Autosuggest
