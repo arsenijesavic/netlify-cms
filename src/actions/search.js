@@ -134,7 +134,7 @@ export function query(namespace, collectionName, searchFields, searchTerm) {
     const backend = currentBackend(state.config);
     const integration = selectIntegration(state, collectionName, 'search');
     const collection = state.collections.find(collection => collection.get('name') === collectionName);
-
+    console.log(searchFields)
     const queryPromise = integration
       ? getIntegrationProvider(state.integrations, backend.getToken, integration)
           .searchBy(searchFields.map(f => `data.${ f }`), collectionName, searchTerm)
