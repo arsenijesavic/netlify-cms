@@ -139,7 +139,7 @@ class RelationsControl extends Component {
       <TagsInput
         id={forID}
         className={classNameWrapper}
-        value={value || []}
+        value={[value] || []}
         onChange={this.onChange}
         onFocus={setActiveStyle}
         onBlur={setInactiveStyle}
