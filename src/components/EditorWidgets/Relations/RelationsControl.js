@@ -92,7 +92,8 @@ class RelationsControl extends Component {
     };
 
     const suggestions = (this.props.queryHits.get) ? this.props.queryHits.get(this.controlID, []) : [];
-    console.log(this.props)
+    console.log('SUGGESTIONS', suggestions, this.props.queryHits)
+    debugger
     return (
       <div className="nc-relations-container">
         <Autosuggest
@@ -116,7 +117,6 @@ class RelationsControl extends Component {
   renderSuggestion = (suggestion) => {
     const { field } = this.props;
     const valueField = field.get('valueField');
-    console.log(suggestion)
     return <span>{suggestion.data[valueField]}</span>;
   };
 
